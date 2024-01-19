@@ -754,8 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloomShader: {fileID: 4800000, guid: 758dc32d9dee784439ac0dff733432ec, type: 3}
-  interations: 3
-  threshold: 1
+  interations: 1
+  threshold: 3.33
 --- !u!1 &1098548578
 GameObject:
   m_ObjectHideFlags: 0
