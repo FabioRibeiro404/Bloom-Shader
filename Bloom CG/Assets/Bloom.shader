@@ -3,16 +3,11 @@ Shader "Custom/Bloom" {
 	Properties {
 		_MainTex ("Texture", 2D) = "white" {}
 	}
-
 	CGINCLUDE
 		#include "UnityCG.cginc"
 
 		sampler2D _MainTex;
 		float4 _MainTex_TexelSize;
-
-		half3 Sample (float2 uv) {
-			return tex2D(_MainTex, uv).rgb;
-		}
 
 		struct VertexData {
 			float4 vertex : POSITION;
@@ -30,6 +25,19 @@ Shader "Custom/Bloom" {
 			i.uv = v.uv;
 			return i;
 		}
+		half3 Sample (float2 uv) {
+			return tex2D(_MainTex, uv).rgb;
+		}
+
+		half3 SampleBox (float2 uv, float delta) {
+			float4 o = _MainTex_TexelSize.xyxy * float2(-delta, delta).xxyy;
+			half3 s =
+				Sample(uv + o.xy) + Sample(uv + o.zy) +
+				Sample(uv + o.xw) + Sample(uv + o.zw);
+			return s * 0.25f;
+		}
+
+
 	ENDCG
 
 	SubShader {
@@ -37,16 +45,17 @@ Shader "Custom/Bloom" {
 		ZTest Always
 		ZWrite Off
 
-		Pass {
+		Pass // 0
+		{
 			CGPROGRAM
 				#pragma vertex VertexProgram
 				#pragma fragment FragmentProgram
 
 				half4 FragmentProgram (Interpolators i) : SV_Target {
-					return tex2D(_MainTex, i.uv) * half4(1, 0, 0, 0);
+					return half4(SampleBox(i.uv), 1);
 				}
-
 			ENDCG
 		}
+
 	}
 }
