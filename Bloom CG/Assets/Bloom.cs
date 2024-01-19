@@ -9,6 +9,12 @@ public class Bloom : MonoBehaviour
     public int interations = 1;
     [NonSerialized]
     Material bloom;
+    const int BoxDownPrefilterPass = 0;
+    const int BoxDownPass = 0;
+    const int BoxUpPass = 1;
+    const int ApplyBloomPass = 2;
+    [Range(0, 10)]
+    public float threshold = 1;
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         if (bloom == null)
@@ -17,13 +23,15 @@ public class Bloom : MonoBehaviour
             bloom.hideFlags = HideFlags.HideAndDontSave;
         }
 
+        bloom.SetFloat("_Threshold", threshold);
+
         RenderTexture[] textures = new RenderTexture[16];
         int width = source.width / 2;
         int height = source.height / 2;
         RenderTextureFormat format = source.format;
         RenderTexture currentDestination = textures[0] = RenderTexture.GetTemporary(width, height, 0, format);
 
-        Graphics.Blit(source, currentDestination, bloom);
+        Graphics.Blit(source, currentDestination, bloom, BoxDownPrefilterPass);
         RenderTexture currentSource = currentDestination;
 
         int i = 1;
@@ -36,19 +44,20 @@ public class Bloom : MonoBehaviour
                 break;
             }
             currentDestination = textures[i] = RenderTexture.GetTemporary(width, height, 0, format);
-            Graphics.Blit(currentSource, currentDestination, bloom);
+            Graphics.Blit(currentSource, currentDestination, bloom, BoxDownPass);
             currentSource = currentDestination;
         }
         for (i -= 2; i >= 0; i--)
         {
             currentDestination = textures[i];
             textures[i] = null;
-            Graphics.Blit(currentSource, currentDestination, bloom);
+            bloom.SetTexture("_SourceTex", source);
+            Graphics.Blit(currentSource, currentDestination, bloom, ApplyBloomPass);
             RenderTexture.ReleaseTemporary(currentSource);
             currentSource = currentDestination;
         }
 
-        Graphics.Blit(currentSource, destination, bloom);
+        Graphics.Blit(currentSource, destination, bloom, BoxUpPass);
 
         RenderTexture.ReleaseTemporary(currentSource);
     }

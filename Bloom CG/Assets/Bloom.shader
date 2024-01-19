@@ -6,7 +6,9 @@ Shader "Custom/Bloom" {
 	CGINCLUDE
 		#include "UnityCG.cginc"
 
-		sampler2D _MainTex;
+		half _Threshold;
+
+		sampler2D _MainTex, _SourceTex;
 		float4 _MainTex_TexelSize;
 
 		struct VertexData {
@@ -37,6 +39,12 @@ Shader "Custom/Bloom" {
 			return s * 0.25f;
 		}
 
+		half3 Prefilter (half3 c) {
+			half brightness = max(c.r, max(c.g, c.b));
+			half contribution = max(0, brightness - _Threshold);
+			contribution /= max(brightness, 0.00001);
+			return c * contribution;
+		}
 
 	ENDCG
 
@@ -45,14 +53,39 @@ Shader "Custom/Bloom" {
 		ZTest Always
 		ZWrite Off
 
-		Pass // 0
-		{
+		Pass { // 0
 			CGPROGRAM
 				#pragma vertex VertexProgram
 				#pragma fragment FragmentProgram
 
 				half4 FragmentProgram (Interpolators i) : SV_Target {
-					return half4(SampleBox(i.uv), 1);
+					return half4(Prefilter(SampleBox(i.uv, 1)), 1);
+				}
+			ENDCG
+		}
+
+		Pass { // 1
+			Blend One One
+
+			CGPROGRAM
+				#pragma vertex VertexProgram
+				#pragma fragment FragmentProgram
+
+				half4 FragmentProgram (Interpolators i) : SV_Target {
+					return half4(SampleBox(i.uv, 0.5), 1);
+				}
+			ENDCG
+		}
+
+		Pass { // 2
+			CGPROGRAM
+				#pragma vertex VertexProgram
+				#pragma fragment FragmentProgram
+
+				half4 FragmentProgram (Interpolators i) : SV_Target {
+					half4 c = tex2D(_SourceTex, i.uv);
+					c.rgb += SampleBox(i.uv, 0.5);
+					return c;
 				}
 			ENDCG
 		}
