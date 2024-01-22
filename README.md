@@ -24,7 +24,16 @@ https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/5998c77f-90ad-43
 
 # Report
 ---
-In the beggining 
+Firstly, I created a script that only affects the camera and to give the blur effect I needed to create the blur and add it to the original image.
+After blurring the image, I made a slider to control the blurring of the image, but it was necessary to make changes to the script to avoid leaving the image with too many blocks.
+With the blur more controlled, I created a public field to place the shader that I'm going to start making.
+In the shader, initially, it was tested whether it was used in the script, using a function in the shader to change all colors to red.
+After being successfully tested, adjustments were made to the shader to improve the blurring process.
+For the bloom effect it is necessary to add the blur effect to the original image and brighten it, but if we brighten the image in each frame we end up with too much light. As a solution I needed a shader variable for the source.
+In the current state, the entire image is under the effect of
+blur and bloom, but we have many situations where you only want the brightest pixels and for that I used the brightness threshold to determine which pixels contribute to the bloom effect.
+
+
 
 
 # References
