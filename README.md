@@ -20,9 +20,11 @@ In the beggining
 ---
 
 Bloom Blurring Light (Jasper Flick):
+
 https://catlikecoding.com/unity/tutorials/advanced-rendering/bloom/
 
 Write Your Own Unity Custom Post Effects | Beginner Post Effects (Benjamin Swee - Custom Unity Shaders):
+
 https://www.youtube.com/watch?v=ahplcYCmfG0
 
 Custom shader fundamentals (Unity Documentation):
