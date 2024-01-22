@@ -7,16 +7,17 @@ Fábio Ribeiro (a22102432)
 
 # Features
 ---
+This bloom shader is customizable in terms of brightness and blur as well as brightness threshold.
 
-
-
+### Bloom
 
 https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/5c1c4fc3-837c-4670-81b6-ec4ad9557c35
 
+### Brightness Threshold
+---
 
 
-
-
+https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/5998c77f-90ad-4335-85e2-ca90d0611e23
 
 # Overview
 ---
