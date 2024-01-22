@@ -10,7 +10,11 @@ Fábio Ribeiro (a22102432)
 
 
 
-https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/8809bbc2-7fde-4404-b267-c22e93f6a491
+
+https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/5c1c4fc3-837c-4670-81b6-ec4ad9557c35
+
+
+
 
 
 
