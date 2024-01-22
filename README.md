@@ -28,10 +28,13 @@ Write Your Own Unity Custom Post Effects | Beginner Post Effects (Benjamin Swee 
 https://www.youtube.com/watch?v=ahplcYCmfG0
 
 Custom shader fundamentals (Unity Documentation):
+
 https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html
 
 Making Custom Blur, Frosted objects in Unity | Post Effects (Benjamin Swee - Custom Unity Shaders):
+
 https://www.youtube.com/watch?v=-FrdBaY2wIA
 
 Introduction to Shaders in Unity (Joseph Hocking):
+
 https://www.kodeco.com/5671826-introduction-to-shaders-in-unity
