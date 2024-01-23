@@ -21,6 +21,9 @@ https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/5998c77f-90ad-43
 
 # Overview
 ---
+This report follows the entire process of creating a Bloom post-process effect.
+This document shows the development that was carried out throughout the project. As well as the way you can customize the blur and brightness effect in the camera. To better see the results press Play to test.
+
 
 # Report
 ---
