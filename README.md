@@ -3,6 +3,9 @@
 # Bloom Shader
 ---
 Fábio Ribeiro (a22102432)
+ # What is a bloom shader?
+---
+Bloom is an effect that messes up an image by causing the color of pixels to spread to adjacent pixels. It's like blurring an image, but based on brightness. In this way, we could communicate very bright colors through the blur. It's similar to the way light can diffuse inside our eyes, which can become noticeable in the case of intense brightness, but it's mainly a non-realistic effect.
  # What was done
  ---
  - To create a bloom effect you first need to blur;
