@@ -44,6 +44,11 @@ This document shows the development that was carried out throughout the project.
 ---
 This shader has no impact This shader has no effect on performance.
 
+
+https://github.com/FabioRibeiro404/Bloom-Shader/assets/91754191/3e744c2a-e507-46ef-b799-44e128424242
+
+
+
 # Report
 ---
 Firstly, I created a script that only affects the camera and to give the blur effect I needed to create the blur and add it to the original image.
