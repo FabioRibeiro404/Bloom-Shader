@@ -86,3 +86,11 @@ https://www.youtube.com/watch?v=-FrdBaY2wIA
 Introduction to Shaders in Unity (Joseph Hocking):
 
 https://www.kodeco.com/5671826-introduction-to-shaders-in-unity
+
+Bilinear Filtering (Margaret Rouse):
+
+https://www.techopedia.com/definition/83/bilinear-filtering
+
+Box Filter(NVIDIA):
+
+https://docs.nvidia.com/vpi/algo_box_filter.html
